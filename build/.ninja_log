@@ -1,0 +1,5 @@
+# ninja log v5
+3	368	7200261967117072	CMakeFiles/test.dir/KBitset.cpp.obj	334dd568e7b79c2b
+3	183	7200228262009514	CMakeFiles/test.dir/KBitset_alloc.cpp.obj	14db6b3a89f94af3
+3	353	7200262123138533	CMakeFiles/test.dir/test.cpp.obj	b1489af8692ade25
+353	426	7200262123838477	test.exe	216084448f9952ac

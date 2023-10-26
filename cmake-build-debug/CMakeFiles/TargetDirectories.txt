@@ -1,0 +1,3 @@
+C:/code/vscode_c++/project/KBitset/cmake-build-debug/CMakeFiles/test.dir
+C:/code/vscode_c++/project/KBitset/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/code/vscode_c++/project/KBitset/cmake-build-debug/CMakeFiles/rebuild_cache.dir
