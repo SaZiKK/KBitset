@@ -3,4 +3,5 @@ project(KBitset)
 
 add_executable(test test.cpp KBitset.cpp
         KBitset_alloc.h
-        KBitset_alloc.cpp)
+        KBitset_alloc.cpp
+)

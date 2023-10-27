@@ -24,6 +24,7 @@ class KBitset{
         size_t find_first() const;
         size_t find_next(size_t) const;
         size_t capacity() const;
+        void test();
 
         // 重载下标访问操作符
         bool operator[](size_t index) const;

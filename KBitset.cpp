@@ -1,11 +1,12 @@
 #include"KBitset.h"
 #include<iostream>
+#include <limits>
 
 KBitset::KBitset() : bitSize(0), pointer(0) {
 
 }
 
-KBitset::KBitset(size_t n) : bitSize(n) {
+KBitset::KBitset(size_t n) : bitSize(n) ,pointer(n){
     size_t byteCount = (n + BIT_SIZE_OF_LONG - 1) / BIT_SIZE_OF_LONG;
     data.resize(byteCount, 0);
 }
@@ -20,7 +21,6 @@ bool KBitset::empty() {
 
 void KBitset::reset() {
     std::fill(data.begin(), data.end(), 0);
-    bitSize = 0;
     pointer = 0;
 }
 
@@ -83,10 +83,12 @@ size_t KBitset::find_first() const {
         }
         byteIndex++;
     }
-    return -1;  // 如果没有找到值为 1 的位，则返回 -1 表示未找到
+    return -1;
 }
 
 size_t KBitset::find_next(size_t prev) const {
+    prev++;
+    if(prev>bitSize) return bitSize;
     size_t byteIndex = prev / BIT_SIZE_OF_LONG;
     unsigned long _x = data[byteIndex] >> prev % BIT_SIZE_OF_LONG;
     if (_x) {
@@ -102,10 +104,14 @@ size_t KBitset::find_next(size_t prev) const {
         }
         byteIndex++;
     }
-    return -1;  // 如果没有找到值为 1 的位，则返回 -1 表示未找到
+    return bitSize;
 }
 
 //返回字节数
 size_t KBitset::capacity() const {
     return data.size() * BIT_SIZE_OF_LONG / BYTE_SIZE;
+}
+
+void KBitset::test() {
+    std::fill(data.begin(), data.end(), 1);
 }
