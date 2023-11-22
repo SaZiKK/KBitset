@@ -3,7 +3,7 @@
 #include <limits>
 
 KBitset::KBitset() : bitSize(0), pointer(0) {
-
+    data.push_back(0);
 }
 
 KBitset::KBitset(size_t n) : bitSize(n) ,pointer(n){
@@ -32,8 +32,8 @@ void KBitset::push_back(size_t value) {
     if (pointer == bitSize) {
         bitSize++;
         if (bitSize > data.size() * BIT_SIZE_OF_LONG) {
-            unsigned long _x = 0;
-            data.push_back(_x);
+            data.reserve(data.size()*2);
+            data.insert(data.end(),data.size()*2,0);
         }
     }
 
@@ -49,6 +49,13 @@ void KBitset::pop_back() {
 }
 
 void KBitset::set(size_t index) {
+    if(index>data.size() * BIT_SIZE_OF_LONG){
+        data.reserve((index/BIT_SIZE_OF_LONG+1)*2);
+        data.insert(data.end(),(index/BIT_SIZE_OF_LONG+1)*2,0);
+        bitSize=index;
+    }
+    if(index>bitSize) bitSize=index;
+
     size_t byteIndex = index / BIT_SIZE_OF_LONG;
     size_t bitIndex = index % BIT_SIZE_OF_LONG;
     unsigned long mask = 1 << bitIndex;
@@ -56,6 +63,13 @@ void KBitset::set(size_t index) {
 }
 
 void KBitset::reset(size_t index) {
+    if(index>data.size() * BIT_SIZE_OF_LONG){
+        data.reserve((index/BIT_SIZE_OF_LONG+1)*2);
+        data.insert(data.end(),(index/BIT_SIZE_OF_LONG+1)*2,0);
+        bitSize=index;
+    }
+    if(index>bitSize) bitSize=index;
+
     size_t byteIndex = index / BIT_SIZE_OF_LONG;
     size_t bitIndex = index % BIT_SIZE_OF_LONG;
     unsigned long mask = ~(1 << bitIndex);
