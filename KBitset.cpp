@@ -3,7 +3,7 @@
 #include <limits>
 
 KBitset::KBitset() : bitSize(0), pointer(0) {
-    data.push_back(0);
+
 }
 
 KBitset::KBitset(size_t n) : bitSize(n) ,pointer(n){
